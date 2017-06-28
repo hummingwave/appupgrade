@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WaveUpgrade.iml" filepath="$PROJECT_DIR$/WaveUpgrade.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/upgrade/upgrade.iml" filepath="$PROJECT_DIR$/upgrade/upgrade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/appupgrade/appupgrade.iml" filepath="$PROJECT_DIR$/appupgrade/appupgrade.iml" />
     </modules>
   </component>
 </project>

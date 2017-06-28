@@ -32,6 +32,8 @@ This checks whether the current version of the app is less than latest version o
 
 - If equal or greater, nothing happens as the app is up to date.
 
+We can make forceUpdate if the latest version in the playstore contains **"F"** in the version name.
+
 
 
 

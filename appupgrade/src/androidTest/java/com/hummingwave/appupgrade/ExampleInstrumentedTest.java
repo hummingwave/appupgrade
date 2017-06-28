@@ -1,4 +1,4 @@
-package com.hummingwave.upgrade;
+package com.hummingwave.appupgrade;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

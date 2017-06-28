@@ -1,6 +1,7 @@
-package com.hummingwave.upgrade;
+package com.hummingwave.appupgrade;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
@@ -21,5 +22,15 @@ class Utility {
     static boolean isValidString(String s) {
         return (s != null && !s.trim().isEmpty() && !s.equalsIgnoreCase("") && !s.equalsIgnoreCase("null"));
     }
+
+
+
+    static SharedPreferences getSharedPref(Context context) {
+        if (context == null) {
+           return null;
+        }
+        return context.getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE);
+    }
+
 
 }

@@ -3,7 +3,7 @@ package com.hummingwave.waveupgrade;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.hummingwave.upgrade.Upgrade;
+import com.hummingwave.appupgrade.Upgrade;
 
 
 public class MainActivity extends AppCompatActivity {

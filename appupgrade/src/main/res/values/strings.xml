@@ -4,5 +4,7 @@
     <string name="update_now">Update now</string>
     <string name="update_later">Update later</string>
     <string name="dont_show">Don\'t show this again</string>
+    <string name="net_connection_error">Please check your internet connection</string>
+    <string name="generic_error">Something went wrong</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.hummingwave.upgrade;
+package com.hummingwave.appupgrade;
 
 /*
  * Created by Sneha on 27-Jun-17.
@@ -18,7 +18,10 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +46,7 @@ class UpgradeApp {
         try {
             context = ctx;
             if (context != null) {
+                if(Utility.getSharedPref(context).getBoolean("DontShowAgain", false)) return;
                 PackageManager pm = context.getPackageManager();
                 PackageInfo pInfo;
                 pInfo = pm.getPackageInfo(context.getPackageName(), 0);
@@ -50,7 +54,7 @@ class UpgradeApp {
                 icon = pm.getApplicationIcon(packageName);
                 currentVersion = pInfo.versionName;
                 Log.d(TAG, packageName + pInfo.versionName + pInfo.versionCode + "");
-                //packageName = "com.parivartree";
+                packageName = "com.parivartree";
 
                 if (Utility.isInternetConnectivityAvailable(context)) {
                     if (Utility.isValidString(packageName) && Utility.isValidString(currentVersion)) {
@@ -69,10 +73,10 @@ class UpgradeApp {
                         countDownTimer.start();
                         new GetLatestVersion().execute();
                     } else {
-                        Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, context.getResources().getString(R.string.generic_error), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(context, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.net_connection_error), Toast.LENGTH_SHORT).show();
                 }
             }
         } catch (Exception e1) {
@@ -140,8 +144,13 @@ class UpgradeApp {
 
                     TextView txtUpdateNow = (TextView) upgradeDialog.findViewById(R.id.txt_update_now);
                     TextView txtRemindLater = (TextView) upgradeDialog.findViewById(R.id.txt_remind_me_later);
+                    LinearLayout linearDontShow = (LinearLayout) upgradeDialog.findViewById(R.id.linear_dont_show);
+                    CheckBox checkBoxDontShow = (CheckBox) upgradeDialog.findViewById(R.id.checkbox_dont_show);
 
-                    if(latestVersion.toLowerCase().contains("f")) txtRemindLater.setVisibility(View.GONE);
+                    if ((latestVersion).toLowerCase().contains("f")) {
+                        txtRemindLater.setVisibility(View.GONE);
+                        linearDontShow.setVisibility(View.GONE);
+                    }
 
                     ImageView imgAppIcon = (ImageView) upgradeDialog.findViewById(R.id.img_app_icon);
                     if (icon != null) imgAppIcon.setImageDrawable(icon);
@@ -158,6 +167,16 @@ class UpgradeApp {
                         @Override
                         public void onClick(View v) {
                             upgradeDialog.dismiss();
+                        }
+                    });
+                    checkBoxDontShow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            if (isChecked) {
+                                Utility.getSharedPref(context).edit().putBoolean("DontShowAgain", true).apply();
+                            } else {
+                                Utility.getSharedPref(context).edit().putBoolean("DontShowAgain", false).apply();
+                            }
                         }
                     });
                     upgradeDialog.show();
