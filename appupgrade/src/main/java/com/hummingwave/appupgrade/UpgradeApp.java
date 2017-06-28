@@ -54,7 +54,6 @@ class UpgradeApp {
                 icon = pm.getApplicationIcon(packageName);
                 currentVersion = pInfo.versionName;
                 Log.d(TAG, packageName + pInfo.versionName + pInfo.versionCode + "");
-                packageName = "com.parivartree";
 
                 if (Utility.isInternetConnectivityAvailable(context)) {
                     if (Utility.isValidString(packageName) && Utility.isValidString(currentVersion)) {
