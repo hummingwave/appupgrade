@@ -17,7 +17,11 @@ Steps for installing appupgrade to the app
         <type>pom</type>
         </dependency>
 
-### 3. Add this line in your launcher activity eg: SplashActivity
+### 3. Add these permissions in AndroidManifest.xml
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+### 4. Add this line in your launcher activity eg: SplashActivity
           Upgrade.init(this);
 
 
