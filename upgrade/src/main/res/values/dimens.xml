@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
+
+    <dimen name="txt_size_16">16sp</dimen>
+
+</resources>

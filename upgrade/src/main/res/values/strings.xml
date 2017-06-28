@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Upgrade</string>
+    <string name="upgrade_heading">A new version of app is available!</string>
+    <string name="update_now">Update now</string>
+    <string name="update_later">Update later</string>
+    <string name="dont_show">Don\'t show this again</string>
+
+</resources>

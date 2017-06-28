@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'appupgrade'
+    bintrayName = 'appupgrade'
+
+    publishedGroupId = 'com.hummingwave.appupgrade'
+    libraryName = 'appupgrade'
+    artifact = 'appupgrade'
+
+    libraryDescription = 'Checks whether current version is less than playstore version or not and open playstore if current version is less.'
+
+    siteUrl = 'https://github.com/hummingwave/appupgrade'
+    gitUrl = 'https://github.com/hummingwave/appupgrade.git'
+
+    libraryVersion = '1.1.0'
+
+    developerId = 'hummingwave'
+    developerName = 'Hummingwave'
+    developerEmail = 'info@hummingwave.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.7.2'
+
+}
+
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
