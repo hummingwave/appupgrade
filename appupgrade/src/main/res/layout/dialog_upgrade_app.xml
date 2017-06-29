@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@drawable/background_curved"
+    android:background="@drawable/upgrade_background_curved"
     android:orientation="vertical">
 
     <LinearLayout
@@ -21,15 +21,15 @@
     </LinearLayout>
 
     <TextView
-        style="@style/Base.TextAppearance.AppCompat.Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_margin="@dimen/margin_15"
         android:focusable="false"
         android:gravity="center"
+        android:textSize="@dimen/txt_size_18"
         android:text="@string/upgrade_heading"
-        android:textColor="@color/dark_grey" />
+        android:textColor="@color/upgrade_dark_grey" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:layout_marginRight="@dimen/margin_10"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/update_now"
+            android:text="@string/upgrade_update_now"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="@dimen/txt_size_16"
             android:visibility="visible" />
@@ -61,7 +61,7 @@
             android:layout_marginRight="@dimen/margin_20"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/update_later"
+            android:text="@string/upgrade_update_later"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="@dimen/txt_size_16"
             android:visibility="visible" />
@@ -88,8 +88,8 @@
             android:layout_height="@dimen/margin_40"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/dont_show"
-            android:textColor="@color/dark_grey"
+            android:text="@string/upgrade_dont_show"
+            android:textColor="@color/upgrade_dark_grey"
             android:textSize="@dimen/txt_size_16"
             />
     </LinearLayout>

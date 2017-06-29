@@ -9,7 +9,7 @@ import android.net.NetworkInfo;
  * Created by Sneha on 27-Jun-17.
  */
 
-class Utility {
+class UpgradeUtility {
     static boolean isInternetConnectivityAvailable(Context context) {
         if (context != null) {
             ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

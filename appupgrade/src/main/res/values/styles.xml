@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="activityDialogTheme" parent="Theme.AppCompat.Dialog">
+    <style name="UpgradeActivityDialogTheme" parent="Theme.AppCompat.Dialog">
         <!-- Fill the screen -->
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -13,16 +13,16 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
-    <style name="MyDialogTheme" parent="android:Theme.Dialog">
+    <style name="UpgradeMyDialogTheme" parent="android:Theme.Dialog">
         <!-- Fill the screen -->
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
+        <item name="android:windowAnimationStyle">@style/UpgradeAnimation.Window</item>
 
     </style>
-    <style name="MyAnimation.Window" parent="@android:style/Animation.Dialog">
-        <item name="android:windowEnterAnimation">@anim/pop_up</item>
+    <style name="UpgradeAnimation.Window" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/upgrade_pop_up</item>
         <item name="android:windowExitAnimation">@null</item>
     </style>
 </resources>

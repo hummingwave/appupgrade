@@ -46,7 +46,7 @@ class UpgradeApp {
         try {
             context = ctx;
             if (context != null) {
-                if(Utility.getSharedPref(context).getBoolean("DontShowAgain", false)) return;
+                if(UpgradeUtility.getSharedPref(context).getBoolean("DontShowAgain", false)) return;
                 PackageManager pm = context.getPackageManager();
                 PackageInfo pInfo;
                 pInfo = pm.getPackageInfo(context.getPackageName(), 0);
@@ -54,9 +54,8 @@ class UpgradeApp {
                 icon = pm.getApplicationIcon(packageName);
                 currentVersion = pInfo.versionName;
                 Log.d(TAG, packageName + pInfo.versionName + pInfo.versionCode + "");
-
-                if (Utility.isInternetConnectivityAvailable(context)) {
-                    if (Utility.isValidString(packageName) && Utility.isValidString(currentVersion)) {
+                if (UpgradeUtility.isInternetConnectivityAvailable(context)) {
+                    if (UpgradeUtility.isValidString(packageName) && UpgradeUtility.isValidString(currentVersion)) {
                         countDownTimer = new CountDownTimer(2000, 100) {
                             @Override
                             public void onTick(long millisUntilFinished) {
@@ -72,10 +71,10 @@ class UpgradeApp {
                         countDownTimer.start();
                         new GetLatestVersion().execute();
                     } else {
-                        Toast.makeText(context, context.getResources().getString(R.string.generic_error), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, context.getResources().getString(R.string.upgrade_generic_error), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(context, context.getResources().getString(R.string.net_connection_error), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.upgrade_net_connection_error), Toast.LENGTH_SHORT).show();
                 }
             }
         } catch (Exception e1) {
@@ -104,7 +103,7 @@ class UpgradeApp {
         @Override
         protected void onPostExecute(JSONObject jsonObject) {
             try {
-                if (Utility.isValidString(latestVersion) && currentVersion.compareTo(latestVersion) < 0) {
+                if (UpgradeUtility.isValidString(latestVersion) && currentVersion.compareTo(latestVersion) < 0) {
                     if (countDownTimer != null) {
                         countDownTimer.cancel();
                     }
@@ -129,16 +128,16 @@ class UpgradeApp {
 
     private boolean showDialog() {
         try {
-            if (context != null && Utility.isValidString(latestVersion) && currentVersion.compareTo(latestVersion) < 0) {
+            if (context != null && UpgradeUtility.isValidString(latestVersion) && currentVersion.compareTo(latestVersion) < 0) {
                 if (countDownTimer != null) countDownTimer.cancel();
                 Log.d(TAG, new Date() + "");
                 handler.removeCallbacks(runnable);
-                final Dialog upgradeDialog = new Dialog(context, R.style.MyDialogTheme);
+                final Dialog upgradeDialog = new Dialog(context, R.style.UpgradeMyDialogTheme);
                 if (upgradeDialog.getWindow() != null) {
                     upgradeDialog.getWindow().setGravity(Gravity.CENTER);
                     upgradeDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     upgradeDialog.setContentView(R.layout.dialog_upgrade_app);
-                    upgradeDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.background_curved));
+                    upgradeDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.upgrade_background_curved));
                     upgradeDialog.setCancelable(false);
 
                     TextView txtUpdateNow = (TextView) upgradeDialog.findViewById(R.id.txt_update_now);
@@ -153,7 +152,7 @@ class UpgradeApp {
 
                     ImageView imgAppIcon = (ImageView) upgradeDialog.findViewById(R.id.img_app_icon);
                     if (icon != null) imgAppIcon.setImageDrawable(icon);
-                    else imgAppIcon.setImageResource(R.drawable.logo_googleplay);
+                    else imgAppIcon.setImageResource(R.drawable.upgrade_logo_googleplay);
 
                     txtUpdateNow.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -172,9 +171,9 @@ class UpgradeApp {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             if (isChecked) {
-                                Utility.getSharedPref(context).edit().putBoolean("DontShowAgain", true).apply();
+                                UpgradeUtility.getSharedPref(context).edit().putBoolean("DontShowAgain", true).apply();
                             } else {
-                                Utility.getSharedPref(context).edit().putBoolean("DontShowAgain", false).apply();
+                                UpgradeUtility.getSharedPref(context).edit().putBoolean("DontShowAgain", false).apply();
                             }
                         }
                     });

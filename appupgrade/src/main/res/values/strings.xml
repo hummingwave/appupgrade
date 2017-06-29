@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Upgrade</string>
+    <string name="upgrade_app_name">Upgrade</string>
     <string name="upgrade_heading">A new version of app is available!</string>
-    <string name="update_now">Update now</string>
-    <string name="update_later">Update later</string>
-    <string name="dont_show">Don\'t show this again</string>
-    <string name="net_connection_error">Please check your internet connection</string>
-    <string name="generic_error">Something went wrong</string>
+    <string name="upgrade_update_now">Update now</string>
+    <string name="upgrade_update_later">Update later</string>
+    <string name="upgrade_dont_show">Don\'t show this again</string>
+    <string name="upgrade_net_connection_error">Please check your internet connection</string>
+    <string name="upgrade_generic_error">Something went wrong</string>
 
 </resources>
