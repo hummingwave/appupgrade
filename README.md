@@ -6,14 +6,14 @@ Steps for installing appupgrade to the app
 ### 1. Add this for gradle dependency
 	dependencies {
 		...
-		compile 'com.hummingwave.appupgrade:appupgrade:1.1.0'
+		compile 'com.hummingwave.appupgrade:appupgrade:1.0.4'
 	}
 
 ### 2. Add this for maven dependency
         <dependency>
         <groupId>com.hummingwave.appupgrade</groupId>
         <artifactId>appupgrade</artifactId>
-        <version>1.1.0</version>
+        <version>1.0.4</version>
         <type>pom</type>
         </dependency>
 
