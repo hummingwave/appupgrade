@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="UpgradeActivityDialogTheme" parent="Theme.AppCompat.Dialog">
+    <style name="ActivityDialogTheme" parent="Theme.AppCompat.Dialog">
         <!-- Fill the screen -->
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
