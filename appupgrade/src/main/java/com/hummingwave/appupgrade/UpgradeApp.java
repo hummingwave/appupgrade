@@ -37,9 +37,6 @@ class UpgradeApp {
     private Context context;
     private String currentVersion, latestVersion, packageName;
     private Drawable icon;
-    private Handler handler;
-    private Runnable runnable;
-    private CountDownTimer countDownTimer;
     private boolean dialogShowed;
 
     void getCurrentVersion(Context ctx) {
@@ -56,20 +53,7 @@ class UpgradeApp {
                 Log.d(TAG, packageName + pInfo.versionName + pInfo.versionCode + "");
                 if (UpgradeUtility.isInternetConnectivityAvailable(context)) {
                     if (UpgradeUtility.isValidString(packageName) && UpgradeUtility.isValidString(currentVersion)) {
-                        countDownTimer = new CountDownTimer(2000, 100) {
-                            @Override
-                            public void onTick(long millisUntilFinished) {
-
-                            }
-
-                            @Override
-                            public void onFinish() {
-                                if (!dialogShowed)
-                                    dialogShowed = showDialog();
-                            }
-                        };
-                        countDownTimer.start();
-                        new GetLatestVersion().execute();
+                        new GetLatestVersion().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     } else {
                         Toast.makeText(context, context.getResources().getString(R.string.upgrade_generic_error), Toast.LENGTH_SHORT).show();
                     }
@@ -87,10 +71,12 @@ class UpgradeApp {
         @Override
         protected JSONObject doInBackground(String... params) {
             try {
+                Log.d(TAG, "doInBackground" + " " + new Date());
                 String playStoreURL = "http://play.google.com/store/apps/details?id=" + packageName;
                 //It retrieves the latest version by scraping the content of current version from play store at runtime
                 Document doc = Jsoup.connect(playStoreURL).get();
                 if (doc != null) {
+                    Log.d(TAG, "doInBackground 1" + " " + new Date());
                     latestVersion = doc.getElementsByAttributeValue("itemprop", "softwareVersion").first().text();
                     Log.d(TAG, latestVersion + " " + new Date());
                 }
@@ -104,18 +90,11 @@ class UpgradeApp {
         protected void onPostExecute(JSONObject jsonObject) {
             try {
                 if (UpgradeUtility.isValidString(latestVersion) && currentVersion.compareTo(latestVersion) < 0) {
-                    if (countDownTimer != null) {
-                        countDownTimer.cancel();
+                    Log.d(TAG, "onPostExecute" + " " + new Date());
+                    if (!dialogShowed) {
+                        dialogShowed = showDialog();
+
                     }
-                    handler = new Handler();
-                    runnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            if (!dialogShowed)
-                                dialogShowed = showDialog();
-                        }
-                    };
-                    handler.postDelayed(runnable, 2000);
                 } else {
                     // do nothing
                 }
@@ -129,9 +108,7 @@ class UpgradeApp {
     private boolean showDialog() {
         try {
             if (context != null && UpgradeUtility.isValidString(latestVersion) && currentVersion.compareTo(latestVersion) < 0) {
-                if (countDownTimer != null) countDownTimer.cancel();
                 Log.d(TAG, new Date() + "");
-                handler.removeCallbacks(runnable);
                 final Dialog upgradeDialog = new Dialog(context, R.style.UpgradeMyDialogTheme);
                 if (upgradeDialog.getWindow() != null) {
                     upgradeDialog.getWindow().setGravity(Gravity.CENTER);

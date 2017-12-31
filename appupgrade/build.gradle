@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/hummingwave/appupgrade'
     gitUrl = 'https://github.com/hummingwave/appupgrade.git'
 
-    libraryVersion = '1.0.4'
+    libraryVersion = '1.0.5'
 
     developerId = 'hummingwave'
     developerName = 'Hummingwave'
